@@ -1,0 +1,58 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    env_file:
+      - .env 
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=
+    ports:
+      $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - backend
+    hostname:
+      - db
+
+  api:
+    build: ./api
+    restart: always
+    env_file:
+      - .env
+    ports:
+      $API_LOCAL_PORT:$API_DOCKER_PORT
+    volumes:
+      - .:/app
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - db
+    hostname:
+      - api
+
+  app:
+    build: ./app
+    restart: always
+    env_file:
+      - .env
+    ports:
+      $APP_LOCAL_PORT:$APP_DOCKER_PORT
+    volumes:
+      - .:/app
+    networks:
+      - frontend
+    depends_on:
+      - db
+      - api
+    hostname:
+      - app
+
+volumes:
+  db:
+
+networks:
+  backend:
+  frontend:
