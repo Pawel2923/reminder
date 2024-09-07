@@ -1,7 +1,7 @@
 services:
   db:
     image: mysql
-    restart: always
+    restart: unless-stopped
     env_file:
       - .env 
     environment:
@@ -17,7 +17,7 @@ services:
 
   api:
     build: ./api
-    restart: always
+    restart: unless-stopped
     env_file:
       - .env
     ports:
@@ -30,7 +30,7 @@ services:
 
   app:
     build: ./app
-    restart: always
+    restart: unless-stopped
     env_file:
       - .env
     ports:

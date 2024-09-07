@@ -1,10 +1,11 @@
-import { Request, Response } from "express";
 const express = require("express");
 const app = express();
 
-app.get("/", (_req: Request, res: Response) => {
-  res.send("Hello World");
-});
+const swaggerUI = require("swagger-ui-express");
+const swaggerSpec = require("./swagger");
+
+// Serve Swagger UI
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.listen(8080, () => {
   console.log("Server is running on port 8080");
