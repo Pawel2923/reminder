@@ -11,6 +11,7 @@ services:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
       - db:/var/lib/mysql
+      - ./db-backup:/db-backup
     networks:
       - backend
     hostname: db
