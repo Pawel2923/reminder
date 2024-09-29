@@ -4,7 +4,31 @@ const express = require("express");
 const router = express.Router();
 const registerService = require("../services/registerService");
 
-// Register new user with email and password
+/**
+ * @openapi
+ * /register:
+ *  post:
+ *   tags:
+ *    - Accounts
+ *   summary:
+ *    Register new user using email and password
+ *   parameters:
+ *    - name: user
+ *      in: body
+ *      description: user object containing uid, email and password properties
+ *      type: User
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       $ref: '#/components/schemas/User'
+ *   responses:
+ *    201:
+ *     description: User registration success
+ *    500:
+ *     description: Internal server error
+ */
 router.post("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
         const user: User = req.body;
@@ -27,3 +51,25 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
 });
 
 module.exports = router;
+
+/**
+ * @openapi
+ * components:
+ *  schemas:
+ *   User:
+ *    type: object
+ *    properties:
+ *     uid:
+ *      type: string
+ *      required: true
+ *     username:
+ *      type: string
+ *      required: true
+ *     email:
+ *      type: string
+ *     password:
+ *      type: string
+ *     created_at:
+ *      type: string
+ *      format: date-time
+ */
