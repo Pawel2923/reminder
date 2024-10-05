@@ -4,6 +4,8 @@ import ApiError from "./types/ApiError";
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const swaggerUI = require("swagger-ui-express");
 const swaggerSpec = require("./swagger");
