@@ -1,13 +1,13 @@
-const { Sequelize } = require("sequelize");
+import { Sequelize } from "sequelize";
 
 test("test sequelize connection", async () => {
     const sequelize = new Sequelize(
-        process.env["DB_NAME"],
-        process.env["DB_USER"],
-        process.env["DB_CRED"],
+        process.env["DB_NAME"] as string,
+        process.env["DB_USER"] as string,
+        process.env["DB_CRED"] as string,
         {
-            host: process.env["DB_HOSTNAME"],
-            port: process.env["DB_PORT"],
+            host: process.env["DB_HOSTNAME"] as string,
+            port: process.env["DB_PORT"] as unknown as number,
             dialect: "mysql",
         }
     );

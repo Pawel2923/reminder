@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 
-const express = require("express");
-const router = express.Router();
-const registerService = require("../services/registerService");
+import express from "express";
+import registerService from "../services/registerService";
 
+const router = express.Router();
 /**
  * @openapi
  * /register:
@@ -50,7 +50,7 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
     }
 });
 
-module.exports = router;
+export default router;
 
 /**
  * @openapi

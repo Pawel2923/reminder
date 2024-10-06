@@ -1,16 +1,15 @@
 import { NextFunction, Request, Response } from "express";
 import ApiError from "./types/ApiError";
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import { Sequelize } from "sequelize";
+import swaggerUI from "swagger-ui-express";
+import swaggerSpec from "./swagger";
+import registerRouter from "./routes/register";
 
-const express = require("express");
 const app = express();
-const cors = require("cors");
-const dotenv = require("dotenv");
 dotenv.config();
-
-const swaggerUI = require("swagger-ui-express");
-const swaggerSpec = require("./swagger");
-
-const registerRouter = require("./routes/register");
 
 // Enable cors
 const corsOptions = {

@@ -5,7 +5,6 @@ import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
 
-/* eslint-disable no-redeclare */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
@@ -13,7 +12,7 @@ const compat = new FlatCompat({
     recommendedConfig: js.configs.recommended,
     allConfig: js.configs.all,
 });
-/* eslint-enable no-redeclare */
+
 export default [
     ...compat.extends(
         "eslint:recommended",
@@ -27,11 +26,10 @@ export default [
             },
             parser: tsParser,
             ecmaVersion: 2023,
-            sourceType: "commonjs",
+            sourceType: "module",
         },
         rules: {
             "prettier/prettier": "warn",
-            "@typescript-eslint/no-require-imports": "off",
         },
     },
 ];

@@ -1,4 +1,5 @@
 import ApiError from "../types/ApiError";
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 async function registerWithEmailAndPassword(
     _uid: string,
@@ -8,4 +9,4 @@ async function registerWithEmailAndPassword(
     throw new ApiError("Not implemented", 501);
 }
 
-module.exports = { registerWithEmailAndPassword };
+export default { registerWithEmailAndPassword };
