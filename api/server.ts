@@ -3,10 +3,10 @@ import ApiError from "./types/ApiError";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { Sequelize } from "sequelize";
 import swaggerUI from "swagger-ui-express";
 import swaggerSpec from "./swagger";
 import registerRouter from "./routes/register";
+import { sequelize } from "./models";
 
 const app = express();
 dotenv.config();
@@ -40,6 +40,13 @@ app.use(
     }
 );
 
-app.listen(8080, () => {
+app.listen(8080, async () => {
     console.log("Server is running on port 8080");
+
+    try {
+        await sequelize.authenticate();
+        console.log("Database connected successfully");
+    } catch (error) {
+        console.error("Unable to connect to the database", error);
+    }
 });
