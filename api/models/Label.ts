@@ -14,11 +14,13 @@ class Label extends Model {
                     autoIncrement: true,
                 },
                 labelName: {
+                    field: "label_name",
                     type: DataTypes.STRING(45),
                 },
                 userId: {
                     field: "user_id",
                     type: DataTypes.STRING,
+                    allowNull: false,
                 },
             },
             {

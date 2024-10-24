@@ -33,15 +33,17 @@ class Note extends Model {
                     field: "updated_at",
                     type: DataTypes.DATE,
                 },
-                label: {
-                    type: DataTypes.STRING(45),
-                },
                 content: {
                     type: DataTypes.JSON,
                 },
                 userId: {
                     field: "user_id",
                     type: DataTypes.STRING,
+                    allowNull: false,
+                },
+                labelId: {
+                    field: "label_id",
+                    type: DataTypes.INTEGER,
                 },
             },
             {
