@@ -13,12 +13,15 @@ class User extends Model {
                 uid: {
                     type: DataTypes.STRING,
                     primaryKey: true,
+                    allowNull: false,
                 },
                 email: {
                     type: DataTypes.STRING,
+                    allowNull: false,
                 },
-                password: {
+                passwordHash: {
                     type: DataTypes.STRING,
+                    allowNull: false,
                 },
                 salt: {
                     type: DataTypes.STRING,

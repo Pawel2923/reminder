@@ -1,12 +1,19 @@
-import ApiError from "../types/ApiError";
+import { sequelize } from "../models";
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 async function registerWithEmailAndPassword(
-    _uid: string,
-    _email: string,
-    _password: string
+    uid: string,
+    email: string,
+    passwordHash: string
 ) {
-    throw new ApiError("Not implemented", 501);
+    sequelize.authenticate();
+
+    const user = await sequelize.models["User"]?.create({
+        uid,
+        email,
+        passwordHash,
+    } as User);
+
+    console.log(user);
 }
 
 export default { registerWithEmailAndPassword };

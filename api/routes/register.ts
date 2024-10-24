@@ -35,13 +35,13 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
 
         const uid = user.uid;
         const email = user.email as string;
-        const password = user.password as string;
+        const passwordHash = user.passwordHash as string;
 
         // registration service
         const message = await registerService.registerWithEmailAndPassword(
             uid,
             email,
-            password
+            passwordHash
         );
 
         res.status(201).json({ message });
