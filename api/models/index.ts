@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
     process.env["DB_USER"] as string,
     process.env["DB_CRED"] as string,
     {
-        host: process.env["DB_HOSTNAME"] as string,
+        host: process.env["DB_HOST"] as string,
         port: process.env["DB_PORT"] as unknown as number,
         dialect: "mysql",
     }

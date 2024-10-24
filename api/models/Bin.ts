@@ -1,14 +1,14 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 
 class Bin extends Model {
-    public uid!: string;
-    public type!: string;
-    public title!: string;
-    public createdAt!: Date;
-    public updatedAt!: Date;
-    public label!: string;
-    public content!: JSON;
-    public userId!: string;
+    declare uid: string;
+    declare type: string;
+    declare title: string;
+    declare createdAt: Date;
+    declare updatedAt: Date;
+    declare label: string;
+    declare content: JSON;
+    declare userId: string;
 
     public static initModel(sequelize: Sequelize): void {
         Bin.init(
@@ -25,10 +25,12 @@ class Bin extends Model {
                     type: DataTypes.STRING,
                     allowNull: false,
                 },
-                created_at: {
+                createdAt: {
+                    field: "created_at",
                     type: DataTypes.DATE,
                 },
-                updated_at: {
+                updatedAt: {
+                    field: "updated_at",
                     type: DataTypes.DATE,
                 },
                 label: {
@@ -37,7 +39,8 @@ class Bin extends Model {
                 content: {
                     type: DataTypes.JSON,
                 },
-                user_id: {
+                userId: {
+                    field: "user_id",
                     type: DataTypes.STRING,
                 },
             },

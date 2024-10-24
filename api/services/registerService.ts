@@ -1,19 +1,29 @@
 import { sequelize } from "../models";
+import ApiError from "../types/ApiError";
+import User from "../models/User";
 
 async function registerWithEmailAndPassword(
     uid: string,
     email: string,
     passwordHash: string
 ) {
-    sequelize.authenticate();
+    const userModel = sequelize.models["User"];
 
-    const user = await sequelize.models["User"]?.create({
+    if (!userModel) {
+        throw new ApiError("User model in sequelize not found");
+    }
+
+    const user = (await userModel.create({
         uid,
         email,
         passwordHash,
-    } as User);
+    })) as User | undefined;
 
-    console.log(user);
+    if (!(user instanceof User)) {
+        throw new ApiError("User registration failed");
+    }
+
+    return "User registered successfully";
 }
 
 export default { registerWithEmailAndPassword };

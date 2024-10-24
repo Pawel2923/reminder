@@ -29,7 +29,6 @@
         "allowSyntheticDefaultImports": true,
         "types": [
             "@types/node",
-            "./types/Types.d.ts",
             "@types/jest"
         ] /* Specify types package names to be included without being referenced in a source file. */
     }

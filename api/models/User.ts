@@ -1,11 +1,12 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 
 class User extends Model {
-    public uid!: string;
-    public email!: string;
-    public passwordHash!: string;
-    public salt!: string;
-    public createdAt!: Date;
+    declare uid: string;
+    declare email: string;
+    declare passwordHash: string;
+    declare salt: string;
+    declare createdAt: Date;
+    declare updatedAt: Date;
 
     public static initModel(sequelize: Sequelize): void {
         User.init(
@@ -13,7 +14,6 @@ class User extends Model {
                 uid: {
                     type: DataTypes.STRING,
                     primaryKey: true,
-                    allowNull: false,
                 },
                 email: {
                     type: DataTypes.STRING,
@@ -26,7 +26,12 @@ class User extends Model {
                 salt: {
                     type: DataTypes.STRING,
                 },
-                created_at: {
+                createdAt: {
+                    field: "created_at",
+                    type: DataTypes.DATE,
+                },
+                updatedAt: {
+                    field: "updated_at",
                     type: DataTypes.DATE,
                 },
             },

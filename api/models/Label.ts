@@ -1,17 +1,23 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 
 class Label extends Model {
-    public name!: string;
-    public userId!: string;
+    declare id: number;
+    declare labelName: string;
+    declare userId: string;
 
     public static initModel(sequelize: Sequelize): void {
         Label.init(
             {
-                name: {
-                    type: DataTypes.STRING(45),
+                id: {
+                    type: DataTypes.INTEGER,
                     primaryKey: true,
+                    autoIncrement: true,
                 },
-                user_id: {
+                labelName: {
+                    type: DataTypes.STRING(45),
+                },
+                userId: {
+                    field: "user_id",
                     type: DataTypes.STRING,
                 },
             },

@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import express from "express";
 import registerService from "../services/registerService";
+import User from "../models/User";
 
 const router = express.Router();
 /**
@@ -26,8 +27,20 @@ const router = express.Router();
  *   responses:
  *    201:
  *     description: User registration success
+ *     content:
+ *      application/json:
+ *       schema:
+ *        type: object
+ *        properties:
+ *         message:
+ *          type: string
  *    500:
  *     description: Internal server error
+ *     content:
+ *      application/json:
+ *       schema:
+ *        type: string
+ *        example: User registration failed
  */
 router.post("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -37,7 +50,6 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
         const email = user.email as string;
         const passwordHash = user.passwordHash as string;
 
-        // registration service
         const message = await registerService.registerWithEmailAndPassword(
             uid,
             email,
