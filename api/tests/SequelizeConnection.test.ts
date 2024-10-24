@@ -19,5 +19,5 @@ test("test sequelize connection", async () => {
         console.error("Can't connect to db", error);
     }
 
-    sequelize.close();
+    await sequelize.close();
 });
